@@ -4,11 +4,12 @@ on:
   push:
     branches:
       - master
+      - develop
       - 'feature/**'
     tags:
       - 'v*'  # Trigger on version tags like v1.0.0
   pull_request:
-    branches: [ "master" ]
+    branches: [ "develop", "master" ]
 
 permissions:
   id-token: write  # Required for OIDC

@@ -411,7 +411,8 @@ The Docker images follow semantic versioning:
 - `x.y.z`: Specific version (e.g., `1.2.3`)
 - `x.y`: Latest patch version of a specific minor version (e.g., `1.2`)
 - `x`: Latest minor.patch version of a specific major version (e.g., `1`)
-- `master`: Latest build from the master branch (development version)
+- `develop`: Latest build from the develop branch (integration version)
+- `master`: Latest production branch build
 
 Note: For most users, the `latest` tag is recommended as it includes all patch updates and bug fixes.
 
@@ -520,7 +521,7 @@ spec:
         app.kubernetes.io/name: hp-scan-to
     spec:
       containers:
-        - image: manuc66/node-hp-scan-to:master
+        - image: manuc66/node-hp-scan-to:develop
           name: hp-scan-to
           env:
           - name: IP
