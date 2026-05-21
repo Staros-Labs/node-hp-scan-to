@@ -10,3 +10,6 @@
 /test/asset/sample1.jpg
 /test/asset/sample2.jpg
 /.yarn/install-state.gz
+
+# Local builder instructions
+AGENTS.md
