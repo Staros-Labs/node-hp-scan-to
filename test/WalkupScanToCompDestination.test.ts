@@ -4,8 +4,9 @@ import path from "node:path";
 import * as fs from "node:fs/promises";
 import WalkupScanToCompDestination from "../src/hpModels/WalkupScanToCompDestination.js";
 import { ScanPlexMode } from "../src/hpModels/ScanPlexMode.js";
+import { getDirname } from "./helpers/importMeta.js";
 
-const __dirname = import.meta.dirname;
+const __dirname = getDirname(import.meta.url);
 
 describe("WalkupScanToCompDestination", () => {
   describe("Parsing walkupScanToCompDestination_with_ScanPlexMode.xml", async () => {

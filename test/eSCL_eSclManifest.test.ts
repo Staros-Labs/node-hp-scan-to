@@ -3,8 +3,9 @@ import { expect } from "chai";
 import path from "node:path";
 import * as fs from "node:fs/promises";
 import EsclScanJobManifest from "../src/hpModels/EsclManifest.js";
+import { getDirname } from "./helpers/importMeta.js";
 
-const __dirname = import.meta.dirname;
+const __dirname = getDirname(import.meta.url);
 
 describe("ScanJobManifest", () => {
   describe("Parsing EsclManifest1_ScanJet_Pro_4500.xml", async () => {

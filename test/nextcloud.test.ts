@@ -1,6 +1,7 @@
 import { describe } from "mocha";
 import path from "node:path";
 import type { ScanContent, ScanPage } from "../src/type/ScanContent.js";
+import { getDirname } from "./helpers/importMeta.js";
 import {
   uploadImagesToNextcloud,
   uploadPdfToNextcloud,
@@ -10,7 +11,7 @@ import { convertToPdf } from "../src/pdfProcessing.js";
 import fs from "node:fs";
 import nock from "nock";
 
-const __dirname = import.meta.dirname;
+const __dirname = getDirname(import.meta.url);
 
 describe("nextcloud", () => {
   // prepare test data

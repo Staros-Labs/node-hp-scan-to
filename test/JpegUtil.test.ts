@@ -4,8 +4,9 @@ import JpegUtil from "../src/JpegUtil.js";
 import fs0 from "node:fs";
 import fs01 from "node:fs/promises";
 import path from "node:path";
+import { getDirname } from "./helpers/importMeta.js";
 
-const __dirname = import.meta.dirname;
+const __dirname = getDirname(import.meta.url);
 
 const fs = { ...fs0, ...fs01 };
 describe("JpegUtil", () => {

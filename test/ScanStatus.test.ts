@@ -4,8 +4,9 @@ import path from "node:path";
 import * as fs from "node:fs/promises";
 import ScanStatus from "../src/hpModels/ScanStatus.js";
 import { AdfState } from "../src/hpModels/AdfState.js";
+import { getDirname } from "./helpers/importMeta.js";
 
-const __dirname = import.meta.dirname;
+const __dirname = getDirname(import.meta.url);
 
 describe("ScanStatus", () => {
   describe("Parsing scanStatus.xml", async () => {
