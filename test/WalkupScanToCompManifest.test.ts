@@ -3,8 +3,9 @@ import { expect } from "chai";
 import path from "node:path";
 import * as fs from "node:fs/promises";
 import WalkupScanToCompManifest from "../src/hpModels/WalkupScanToCompManifest.js";
+import { getDirname } from "./helpers/importMeta.js";
 
-const __dirname = import.meta.dirname;
+const __dirname = getDirname(import.meta.url);
 
 describe("WalkupScanToCompManifest", () => {
   describe("Parsing walkupScanToCompManifest.xml", async () => {

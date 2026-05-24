@@ -4,8 +4,9 @@ import path from "node:path";
 import { setupProgram } from "../src/program.js";
 import { Help } from "@commander-js/extra-typings";
 import { expect } from "chai";
+import { getDirname } from "./helpers/importMeta.js";
 
-const __dirname = import.meta.dirname;
+const __dirname = getDirname(import.meta.url);
 
 describe("README", () => {
   describe("command usage documentation", async () => {
