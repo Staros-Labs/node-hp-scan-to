@@ -1,20 +1,17 @@
 # node-hp-scan-to
 
-![build](https://github.com/manuc66/node-hp-scan-to/actions/workflows/docker-image.yml/badge.svg)
-[![Build Status](https://app.travis-ci.com/manuc66/node-hp-scan-to.svg?branch=master)](https://app.travis-ci.com/manuc66/node-hp-scan-to)
+[![CI](https://github.com/Staros-Labs/node-hp-scan-to/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Staros-Labs/node-hp-scan-to/actions/workflows/docker-image.yml)
 ![npm](https://img.shields.io/npm/v/node-hp-scan-to)
 [![npm](https://img.shields.io/npm/dt/node-hp-scan-to)](https://www.npmjs.com/package/node-hp-scan-to)
 [![Docker Pulls](https://img.shields.io/docker/pulls/manuc66/node-hp-scan-to)](https://hub.docker.com/repository/docker/manuc66/node-hp-scan-to)
-[![CodeFactor](https://www.codefactor.io/repository/github/manuc66/node-hp-scan-to/badge)](https://www.codefactor.io/repository/github/manuc66/node-hp-scan-to)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmanuc66%2Fnode-hp-scan-to.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmanuc66%2Fnode-hp-scan-to?ref=badge_shield)
 
 **`node-hp-scan-to`** is a Node.js application that replicates HP's "_Scan to Computer_" functionality by [reverse engineering HP's proprietary protocols](protocol_doc/HP%20Officejet%206500%20E710n-z.md) and supporting the standardized [eSCL protocol](protocol_doc/HP%20PageWide%20Pro%20477dw%20MFP.md), allowing you to scan documents directly from your HP printer's scanner to your Linux, Windows, or macOS computer.
 
-
 Unlike the original HP program, `node-hp-scan-to` is cross-platform and can be run on a bare-metal desktop or server, or in a container on Docker or Kubernetes. It can also be integrated with third-party document management solutions such as [Paperless-ngx](https://docs.paperless-ngx.com/) and [Nextcloud](https://Nextcloud.com/).
 
-**Disclaimer:** _This project is neither endorsed by nor affiliated with Hewlett-Packard (HP). Any mention or reference to HP is purely descriptive and non-commercial. All reverse engineering of HP's official Windows application and its interaction with devices has been performed independently without cooperation from HP. __This software is provided as-is for educational and personal use only__._
+This repository is maintained in the `Staros-Labs/node-hp-scan-to` fork. The published npm package and public Docker image keep the established `node-hp-scan-to` and `manuc66/node-hp-scan-to` names for compatibility.
 
+**Disclaimer:** _This project is neither endorsed by nor affiliated with Hewlett-Packard (HP). Any mention or reference to HP is purely descriptive and non-commercial. All reverse engineering of HP's official Windows application and its interaction with devices has been performed independently without cooperation from HP. __This software is provided as-is for educational and personal use only__._
 
 <!-- TOC -->
 
@@ -25,7 +22,7 @@ Unlike the original HP program, `node-hp-scan-to` is cross-platform and can be r
   - [Protocol Support](#protocol-support)
   - [Emulated Duplex Scanning Feature](#emulated-duplex-scanning-feature)
 - [Installation](#installation)
-  - [Using NodeJS](#using-nodejs)
+  - [Using Node.js](#using-nodejs)
   - [Using Docker](#using-docker)
 - [Usage](#usage)
   - [Command Line (CLI)](#command-line-cli)
@@ -37,11 +34,12 @@ Unlike the original HP program, `node-hp-scan-to` is cross-platform and can be r
     - [Example for Docker](#example-for-docker)
     - [Example for Docker Compose](#example-for-docker-compose)
   - [Run with Kubernetes](#run-with-kubernetes)
-  - [Configure](#Configure)
+  - [Configure](#configure)
 - [Build Source Code](#build-source-code)
+  - [Repository Branches](#repository-branches)
   - [Debugging](#debugging)
-- [💖 Support this project](#-support-this-project)
-- [🙏 Special Thanks](#-special-thanks)
+- [Support the Upstream Project](#support-the-upstream-project)
+- [Special Thanks](#special-thanks)
 - [License](#license)
 
 <!-- /TOC -->
@@ -64,24 +62,24 @@ Users have reported it also working on:
 - HP OfficeJet 250 Mobile, 3830, 5230, 5740, 6700 Premium, 6950, Pro 7730, 8010 series, 8025e, 9012e
 - HP PageWide 377dw MFP
 
-There is a good chance it also works on other unlisted HP All-in-One Printer.
+There is a good chance it also works on other unlisted HP All-in-One printers.
 
 ### Supported Functions
 
-- ✔️ JPG and PDF document scan output
-- ✔️ Automatic document feeder (ADF) support with dual-side scanning
-- ✔️ Multi-page platen scanning
-- ✔️ Automatic IP address discovery
+- JPG and PDF document scan output
+- Automatic document feeder (ADF) support with dual-side scanning
+- Multi-page platen scanning
+- Automatic IP address discovery
 
 ### App Features
 
-- ✔️ Multi-platform: Linux, Windows, and macOS
-- ✔️ Prebuilt Docker images (multi-architecture)
-- ✔️ Command line (CLI) support
-- ✔️ Customizable file names, resolutions, and device labels
-- ✔️ Clear all registered targets
-- ✔️ Emulated double side scan
-- ✔️ Multiple output target support:
+- Multi-platform: Linux, Windows, and macOS
+- Prebuilt Docker images (multi-architecture)
+- Command line (CLI) support
+- Customizable file names, resolutions, and device labels
+- Clear all registered targets
+- Emulated double side scan
+- Multiple output target support:
   - Local folders
   - [Paperless-ngx API](https://docs.paperless-ngx.com/api/) upload
   - [Nextcloud WebDAV](https://docs.Nextcloud.com/server/latest/user_manual/en/files/access_webdav.html) upload
@@ -90,7 +88,7 @@ There is a good chance it also works on other unlisted HP All-in-One Printer.
 
 Supports both HP proprietary protocols (WalkupScanToComp, WalkupScan, ScanJob) and the standardized eSCL protocol.
 
-- **eSCL-only devices** (e.g., HP ScanJet Pro 4500 fn1): Automatically detected and supported ([#1307](https://github.com/manuc66/node-hp-scan-to/issues/1307))
+- **eSCL-only devices** (e.g., HP ScanJet Pro 4500 fn1): Automatically detected and supported
 - **Dual-protocol devices**: Uses HP protocols by default; add `--prefer-eSCL` flag to use eSCL instead
 - See [eSCL protocol documentation](protocol_doc/HP%20PageWide%20Pro%20477dw%20MFP.md) for technical details
  
@@ -106,9 +104,9 @@ If you decide not to scan the back side immediately, the front side scan will be
 
 ## Installation
 
-### Using NodeJS
+### Using Node.js
 
-- You must have [NodeJS installed](https://nodejs.org/en/download)
+- You must have [Node.js](https://nodejs.org/en/download) `>=20.11.0` installed.
 
 - In a Terminal, run: `npm install node-hp-scan-to`
 
@@ -139,7 +137,7 @@ If you decide not to scan the back side immediately, the front side scan will be
 
 ### Command Line (CLI)
 
-Running the app with NodeJS using the `npx` command:
+Running the app with Node.js using the `npx` command:
 
 `npx node-hp-scan-to`
 
@@ -154,31 +152,7 @@ Example usage:
 
 #### CLI Options
 
-Run `npx node-hp-scan-to --help` to see the full list of options below:
-
-| Option                                | Description                                                                                                      | Example/Default                                                   |
-|---------------------------------------|------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| `-a`, `--address`                     | Printer IP address.                                                                                              | `-a 192.168.0.5` (no default)                                     |
-| `-d`, `--directory`                   | Directory to save scanned documents. Defaults to `/tmp/scan-to-pc<random value>` if not set.                     | `-d /tmp/scan-to-pc1234`                                          |
-| `-D`, `--debug`                       | Enable debug logging.                                                                                            | `-D` (disabled by default)                                        |
-| `-h`, `--height`                      | Scan height in pixels. Defaults to 3507.                                                                         | `-h 3507`                                                         |
-| `-k`, `--keep-files`                  | Retain scanned files after uploading to Paperless-ngx or Nextcloud (disabled by default).                        | `-k` (disabled by default)                                        |
-| `-l`, `--label`                       | The name of the computer running this app. Defaults to the hostname.                                             | `-l <hostname>` (default: system hostname)                        |
-| `-n`, `--name`                        | Printer name (quote if it contains spaces).                                                                      | `-n "Officejet 6500 E710n-z"` (no default)                        |
-| `-o`, `--paperless-token`             | The paperless token. Required unless `----paperless-token-file` is used. Overrides if both are provided.                   | `-o xxxxxxxxxxxx` (no default)                                    |
-| `--paperless-token-file`              | File name that contains the paperless token. Required unless `---paperless-token` is used. Takes precedence if both are provided.| `--paperless-token-file some/path/to/file` (no default)          |
-| `-p`, `--pattern`                     | Filename pattern (no extension). Use quotes for static text, supports date/time masks (see [dateformat docs](https://www.npmjs.com/package/dateformat#mask-options)). Defaults to `scan<increasing number>_page<page number>`. | `-p scan1_page1`                                                  |
-| `-r`, `--resolution`                  | Scan resolution in DPI. Defaults to 200.                                                                         | `-r 200`                                                          |
-| `--mode <mode> `                      | Selects the scan mode (default: Color) (choices: "Gray", "Color").                                               | `--mode Gray`                                                     |
-| `-s`, `--paperless-post-document-url` | Paperless-ngx API URL for uploading documents.                                                             | `-s https://domain.tld/api/documents/post_document/` (no default) |
-| `-t`, `--temp-directory`              | Temporary directory for processing. Defaults to `/tmp/scan-to-pc<random value>` if not set.                      | `-t /tmp/scan-to-pc5678`                                          |
-| `-w`, `--width`                       | Scan width in pixels. Defaults to 2481.                                                                          | `-w 2481`                                                         |
-| `--device-up-polling-interval`        | Polling interval (in milliseconds) to check if the printer is online.                                            | `--device-up-polling-interval 5000` (no default)                  |
-| `--nextcloud-password`                | Nextcloud app password. Required unless `--nextcloud-password-file` is used. Overrides if both are provided.     | `--nextcloud-password mypassword` (no default)                    |
-| `--nextcloud-password-file`           | File containing the Nextcloud app password. Required unless `--nextcloud-password` is used. Takes precedence if both are provided. | `--nextcloud-password-file /path/to/file` (no default)            |
-| `--nextcloud-upload-folder`           | Nextcloud folder for uploads. Defaults to `scan`.                                                                | `--nextcloud-upload-folder scan`                                  |
-| `--nextcloud-url`                     | Nextcloud instance URL.                                                                                          | `--nextcloud-url https://domain.tld` (no default)                 |
-| `--nextcloud-username`                | Nextcloud username with write access to the upload folder.                                                       | `--nextcloud-username user` (no default)                          |
+Run `npx node-hp-scan-to --help` for global options and `npx node-hp-scan-to <command> --help` for command-specific options. The generated help blocks below are kept in sync by the test suite.
 
 **Notes:**
 
@@ -190,7 +164,7 @@ Run `npx node-hp-scan-to --help` to see the full list of options below:
 
 ##### `listen`
 
-By default, this app runs the `listen` command as the default mode. It will listen to the print for new job and trigger based on the selection on the device.
+By default, this app runs the `listen` command as the default mode. It listens to the printer for new jobs and triggers based on the selection on the device.
 
 Run `npx node-hp-scan-to listen --help` to get the full list of command options.
 
@@ -312,7 +286,7 @@ Global Options:
 
 ##### `clear-registrations`
 
-Running `npx node-hp-scan-to clear-registratons` will clear all registered targets on the device (useful for trial and error and debugging).
+Running `npx node-hp-scan-to clear-registrations` will clear all registered targets on the device (useful for trial and error and debugging).
 
 Run `npx node-hp-scan-to clear-registrations --help` to get command line usage help.
 
@@ -404,7 +378,7 @@ Global Options:
 
 #### Public Pre-Built Docker image
 
-<https://hub.docker.com/repository/docker/manuc66/node-hp-scan-to>
+Public image: <https://hub.docker.com/repository/docker/manuc66/node-hp-scan-to>
 
 The Docker images follow semantic versioning:
 - `latest`: Latest stable release (includes all patch updates)
@@ -422,6 +396,8 @@ You could however use Docker's [macvlan](https://docs.docker.com/engine/network/
 
 All scanned files are written to the volume `/scan`, the filename can be changed with the `PATTERN` environment variable. For the correct permissions to the volume set the environment variables `PUID` and `PGID` to that of the user running the container (usually `PUID=1000` and `PGID=1000`).
 
+The container entrypoint enables the health check endpoint automatically and the image health check probes `http://localhost:3000/health`.
+
 #### Docker Environment Variables
 
 List of supported environment variables and their meaning, or correspondence with [command-line flags](#cli-options):
@@ -433,6 +409,7 @@ List of supported environment variables and their meaning, or correspondence wit
 | `IP`                          | IP address for the program                                                                                    | `-a` / `--address`                                                            |
 | `KEEP_FILES`                  | If set, scanned files are not deleted after uploading to Paperless-ngx or Nextcloud                           |                                                                               |
 | `LABEL`                       | Label to set on the device's display as a scan target                                                         | `-l` / `--label`                                                              |
+| `MAIN_COMMAND`                | Selects the container startup command                                                                         | `listen` (default), `adf-autoscan`, `single-scan`, `clear-registrations`     |
 | `NAME`                        | Name of the device to lookup for on the network                                                               | `-n` / `--name`                                                               |
 | `ADD_EMULATED_DUPLEX`         | Enable emulated duplex scanning, with optional assembly mode (default: document-wise)                         | `--add-emulated-duplex [mode]`                                                |
 | `NEXTCLOUD_PASSWORD`          | Password of Nextcloud user (either this or `NEXTCLOUD_PASSWORD_FILE` is required; file takes precedence)      |                                                                               |
@@ -441,8 +418,8 @@ List of supported environment variables and their meaning, or correspondence wit
 | `NEXTCLOUD_URL`               | Nextcloud URL                                                                                                 | Example: `https://nextcloud.example.tld`                                      |
 | `NEXTCLOUD_USERNAME`          | Nextcloud username                                                                                            |                                                                               |
 | `PAPERLESS_POST_DOCUMENT_URL` | Paperless-ngx post document URL (if provided with token, a PDF is uploaded)                                   | Example: `http://<paperless-host>:<port>/api/documents/post_document/`        |
-| `PAPERLESS_TOKEN`             | Paperless-ngx API token (either this or `NEXTCLOUD_PASSWORD_FILE` is required; file takes precedence)         | Example: `xxxxxxxxxxxx...`                                                    |
-| `PAPERLESS_TOKEN_FILE`        | File containing paperless-ngx API token (either this or `PAPERLESS_TOKEN_FILE` is required; takes precedence) | Example: `./paperless_token.secret` (preferred for Docker Compose secrets)    |
+| `PAPERLESS_TOKEN`             | Paperless-ngx API token (either this or `PAPERLESS_TOKEN_FILE` is required; file takes precedence)            | Example: `xxxxxxxxxxxx...`                                                    |
+| `PAPERLESS_TOKEN_FILE`        | File containing the Paperless-ngx API token (either this or `PAPERLESS_TOKEN` is required; takes precedence)  | Example: `./paperless_token.secret` (preferred for Docker Compose secrets)    |
 | `PATTERN`                     | Pattern to use                                                                                                | `-p` / `--pattern`                                                            |
 | `PGID`                        | ID of the group that will run the program                                                                     |                                                                               |
 | `PUID`                        | ID of the user that will run the program                                                                      |                                                                               |
@@ -454,14 +431,15 @@ List of supported environment variables and their meaning, or correspondence wit
 
 - The name shown on the printer’s display is the hostname of the Docker container, which defaults to a random value. You can override it by setting the `hostname` or using the `LABEL` environment variable.
 
-- To enable debug logs set the environment variable `CMDLINE` to `-D`
+- To enable debug logs, set `CMDLINE=-D`.
+- If you override the health check port with `CMDLINE`, update any external probes to match. The bundled container health check expects port `3000`.
 
 #### Example for Docker
 
 To build a local Docker image from this repo:
 
 ```sh
-git clone https://github.com/manuc66/node-hp-scan-to.git
+git clone https://github.com/Staros-Labs/node-hp-scan-to.git
 cd node-hp-scan-to
 docker build . -t node-hp-scan-to
 docker run -e IP=192.168.0.5 -e PGID=1000 -e PUID=1000 --hostname myComputer node-hp-scan-to
@@ -469,7 +447,7 @@ docker run -e IP=192.168.0.5 -e PGID=1000 -e PUID=1000 --hostname myComputer nod
 
 #### Example for Docker Compose
 
-Create the following `docker-compose.yml` file into this directory:
+Create the following `compose.yaml` file in this directory:
 
 ```yml
 services:
@@ -489,18 +467,18 @@ services:
       # Run the Docker container as the same user ID as the host system:
       - PGID=1000
       - PUID=1000
-      # Optional - enable autoscanning a document when loaded into the scanner:
+      # Optional - enable auto-scanning a document when loaded into the scanner:
       # - MAIN_COMMAND=adf-autoscan
-      # If you need to pass additional configuration flag use the CMDLINE env, thy will be appened to the
+      # Additional flags can be passed through CMDLINE:
       # - CMDLINE=--debug --pdf
       # If using Paperless-ngx, you can use its API to upload files:
       # - PAPERLESS_POST_DOCUMENT_URL=http://<paperless-host>:<port>/api/documents/post_document/
-      # - PAPERLESS_TOKEN= xxxxxxxxxxxx...
+      # - PAPERLESS_TOKEN=xxxxxxxxxxxx...
     volumes:
       - ./scan:/scan
 ```
 
-Then run `docker-compose up -d`
+Then run `docker compose up -d`
 
 ### Run with Kubernetes
 
@@ -521,7 +499,7 @@ spec:
         app.kubernetes.io/name: hp-scan-to
     spec:
       containers:
-        - image: manuc66/node-hp-scan-to:develop
+        - image: manuc66/node-hp-scan-to:latest
           name: hp-scan-to
           env:
           - name: IP
@@ -562,40 +540,46 @@ The configuration file is handled by https://www.npmjs.com/package/config
 
 ## Build Source Code
 
+Clone and install from this fork:
+
+```sh
+git clone https://github.com/Staros-Labs/node-hp-scan-to.git
+cd node-hp-scan-to
+corepack enable
+yarn install --immutable
+```
+
 How to build and run the project's source code:
 
 ```sh
-git clone https://github.com/manuc66/node-hp-scan-to.git
-cd node-hp-scan-to
-yarn install -d
 yarn build
 # Start the program with the printer's IP address:
-node dist/index.js -a 192.168.1.5 
+node dist/index.js -a 192.168.1.5
 # Or start it with the name of the printer:
 # node dist/index.js -n "Officejet 6500 E710n-z"
 ```
 
+### Repository Branches
+
+This fork uses `develop` as the integration branch and `master` as the production branch. Routine work should target `develop` unless you are intentionally shipping a production change.
+
 ### Debugging
 
-I'm using Visual Studio Code to debug this application, so instead of running _ts-node_, just run `code .` and press F5 to start debugging.
+To debug with Visual Studio Code, run `code .` and press `F5`.
 
-You may want to set your printers ip or name in `.vscode/launch.json`
+You may want to set your printer IP or name in `.vscode/launch.json`.
 
-## 💖 Support this project
+## Support the Upstream Project
 
-Thank you so much to everyone who has already supported this project! Your generosity is greatly appreciated, and it motivates me to keep improving and maintaining this project.
+If you want to support the original upstream project, the upstream author accepts donations here:
 
-If this project has helped you save money or time, or simply made your life easier, you can support me by buying me a cup of coffee:
+- PayPal: <https://www.paypal.me/manuc66>
+- Bitcoin: `33gxVjey6g4Beha26fSQZLFfWWndT1oY3F`
 
-- [![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/manuc66)
-- Bitcoin — You can send me bitcoins at this address: `33gxVjey6g4Beha26fSQZLFfWWndT1oY3F`
-
-Thank you for your support!
-
-## 🙏 Special Thanks
+## Special Thanks
 
 A special thank you to [JetBrains](https://www.jetbrains.com/) for supporting this project with a free license for their amazing development tools. Their support helps make this project possible.
 
 ## License
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmanuc66%2Fnode-hp-scan-to.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmanuc66%2Fnode-hp-scan-to?ref=badge_large)
+[MIT](LICENSE)
