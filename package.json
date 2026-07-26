@@ -87,13 +87,13 @@
   },
   "packageManager": "yarn@4.5.3",
   "resolutions": {
-    "dompurify@npm:^3.3.1": "npm:3.4.11",
+    "dompurify@npm:^3.3.1": "npm:3.4.12",
     "form-data@npm:^4.0.5": "npm:4.0.6",
     "js-yaml@npm:^4.1.0": "npm:4.3.0",
     "minimatch@npm:^10.1.1": "npm:10.2.3",
     "minimatch@npm:^9.0.4": "npm:9.0.7",
     "minimatch@npm:^9.0.5": "npm:9.0.7",
     "serialize-javascript@npm:^6.0.2": "npm:7.0.5",
-    "tar@npm:^7.4.3": "npm:7.5.16"
+    "tar@npm:^7.4.3": "npm:7.5.22"
   }
 }
