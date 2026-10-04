@@ -562,6 +562,12 @@ The configuration file is handled by https://www.npmjs.com/package/config
 
 ## Build Source Code
 
+CI in the Staros-Labs fork tests and builds the image without publishing.
+Docker Hub login, Docker image publishing, npm publishing and upstream
+SonarCloud analysis run only in `manuc66/node-hp-scan-to`. The public Docker
+image and npm package are upstream releases; build this fork from source to
+use its changes.
+
 How to build and run the project's source code:
 
 ```sh
